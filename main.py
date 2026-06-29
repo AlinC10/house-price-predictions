@@ -72,6 +72,10 @@ prediction_model.fit(train_X_k, train_y)
 best_features = features_judge.get_feature_names_out()
 
 X = pd.get_dummies(test_data)
+
+# align the data with the training data so the column match
+_, X = train_X.align(X, join='left', axis=1, fill_value=0)
+
 X = X[best_features]
 
 # transform the not available values into the average values
